@@ -1,0 +1,30 @@
+{
+  "name": "myanmar-numbers",
+  "version": "1.0.1",
+  "description": "Parse Myanmar numerals into Arabic numerals, Numbers, and Dates",
+  "main": "myanmar.numbers.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mapmeld/myanmar-numbers-js.git"
+  },
+  "keywords": [
+    "myanmar",
+    "parse",
+    "numerals",
+    "i18n"
+  ],
+  "author": "Nick Doiron <nicholas.doiron@asiafoundation.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mapmeld/myanmar-numbers-js/issues"
+  },
+  "homepage": "https://github.com/mapmeld/myanmar-numbers-js#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "mocha": "2.2.x"
+  },
+  "scripts": {
+    "test": "mocha"
+  }
+}
