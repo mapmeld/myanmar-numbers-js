@@ -7,6 +7,8 @@ Does some parsing to return Numbers and Dates when possible.
 
 You may need special fonts to see Myanmar and Shan numbers.
 
+**To convert into Myanmar, use the <a href="https://github.com/fraserxu/myanmar-numeral">myanmar-numeral</a> package from Fraser Xu.**
+
 ## Usage
 
 ```javascript
