@@ -3,6 +3,7 @@ function myanmarNumbers(str) {
     var numbers = {
       // Myanmar numbers
       "๐": 0,
+      "ဝ": 0,
       "၀": 0,
       "၁": 1,
       "၂": 2,

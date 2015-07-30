@@ -8,6 +8,12 @@ describe("Numbers:", function() {
     assert.equal((typeof ret), "number");
   });
 
+  it("should return 10 when the value is ၁ဝ", function() {
+    var ret = myanmarNumbers("၁ဝ");
+    assert.equal(ret, 10);
+    assert.equal((typeof ret), "number");
+  });
+
   it("should parse all Myanmar digits", function() {
     var ret = myanmarNumbers("၁၂၃၄၅၆၇၈၉၀");
     assert.equal(ret, 1234567890);
