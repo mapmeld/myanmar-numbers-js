@@ -1,7 +1,7 @@
 {
   "name": "myanmar-numbers",
-  "version": "1.0.3",
-  "description": "Parse Myanmar numerals into Arabic numerals, Numbers, and Dates",
+  "version": "1.1.1",
+  "description": "Convert between Myanmar, Shan, and Arabic numerals, Numbers, and Dates",
   "main": "myanmar.numbers.js",
   "repository": {
     "type": "git",

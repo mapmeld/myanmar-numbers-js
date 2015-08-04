@@ -1,10 +1,13 @@
-function myanmarNumbers(str) {
+function myanmarNumbers(str, toLanguage) {
+  str += "";
+  toLanguage = (toLanguage || "en").toLowerCase();
+
   var replaceNumbers = function(txt) {
     var numbers = {
-      // Myanmar numbers
+      // Myanmar and Shan numbers
       "๐": 0,
-      "ဝ": 0,
       "၀": 0,
+      "ဝ": 0,
       "၁": 1,
       "၂": 2,
       "၃": 3,
@@ -27,9 +30,25 @@ function myanmarNumbers(str) {
     };
 
     var keys = Object.keys(numbers);
-    for (var n = 0; n < keys.length; n++) {
-      var re = new RegExp(keys[n], "g");
-      txt = txt.replace(re, numbers[keys[n]]);
+    if (toLanguage === "my") {
+      // Myanmar
+      for (var n = 2; n < 11; n++) {
+        var re = new RegExp(numbers[keys[n]] + "", "g");
+        txt = txt.replace(re, keys[n]);
+      }
+    } else if (toLanguage === "shan") {
+      // Shan numerals - convert any Myanmar numbers to international first
+      var txt = myanmarNumbers(txt) + "";
+      for (var n = 12; n < keys.length; n++) {
+        var re = new RegExp(numbers[keys[n]] + "", "g");
+        txt = txt.replace(re, keys[n]);
+      }
+    } else {
+      for (var n = 0; n < keys.length; n++) {
+        // default
+        var re = new RegExp(keys[n], "g");
+        txt = txt.replace(re, numbers[keys[n]]);
+      }
     }
     return txt;
   };
@@ -54,21 +73,32 @@ function myanmarNumbers(str) {
   var numerals = replaceNumbers(str);
   if (isNaN(1 * numerals)) {
     // check for Date parsing
-    var dateDivider = getDateDivider(numerals);
-    if (dateDivider) {
-      var split = numerals.split(dateDivider);
-      var rearranged = [split[1], split[0], split[2]].join(dateDivider);
+    if ((toLanguage === "my" || toLanguage === "shan") && isNaN(1 * str)) {
       try {
-        var d = new Date(rearranged);
-        // valid date
-        return d;
-      } catch (e) {
-        // not a valid Date or a number - return formatted String
+        var d = new Date(str);
+        // valid date - output numbers in this order and send for conversion
+        return replaceNumbers([d.getDate(), d.getMonth() + 1, d.getFullYear()].join("."));
+      } catch(e) {
+        // not a valid Date or a number - return formatted string
         return numerals;
       }
     } else {
-      // not a Date or a Number - return formatted String
-      return numerals;
+      var dateDivider = getDateDivider(numerals);
+      if (dateDivider) {
+        var split = numerals.split(dateDivider);
+        var rearranged = [split[1], split[0], split[2]].join(dateDivider);
+        try {
+          var d = new Date(rearranged);
+          // valid date
+          return d;
+        } catch (e) {
+          // not a valid Date or a number - return formatted String
+          return numerals;
+        }
+      } else {
+        // not a Date or a Number - return formatted String
+        return numerals;
+      }
     }
   } else {
     // return a Number
@@ -76,5 +106,6 @@ function myanmarNumbers(str) {
   }
 }
 
-exports = exports || {};
-exports.myanmarNumbers = myanmarNumbers;
+if (typeof module !== "undefined") {
+  module.exports = myanmarNumbers;
+}

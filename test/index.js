@@ -1,29 +1,45 @@
 var assert = require("assert");
-var myanmarNumbers = require("../myanmar.numbers").myanmarNumbers;
+var myanmarNumbers = require("../myanmar.numbers");
 
 describe("Numbers:", function() {
-  it("should return 10 when the value is ၁၀", function() {
-    var ret = myanmarNumbers("၁၀");
-    assert.equal(ret, 10);
-    assert.equal((typeof ret), "number");
+  describe("to Arabic numerals:", function() {
+    it("should return 10 when the value is ၁၀", function() {
+      var ret = myanmarNumbers("၁၀");
+      assert.equal(ret, 10);
+      assert.equal((typeof ret), "number");
+    });
+
+    it("should return 10 when the value is ၁ဝ", function() {
+      var ret = myanmarNumbers("၁ဝ");
+      assert.equal(ret, 10);
+      assert.equal((typeof ret), "number");
+    });
+
+    it("should parse all Myanmar digits", function() {
+      var ret = myanmarNumbers("၁၂၃၄၅၆၇၈၉၀");
+      assert.equal(ret, 1234567890);
+      assert.equal((typeof ret), "number");
+    });
+
+    it("should parse all Shan digits", function() {
+      var ret = myanmarNumbers("႑႒႓႔႕႖႗႘႙႐");
+      assert.equal(ret, 1234567890);
+      assert.equal((typeof ret), "number");
+    });
   });
 
-  it("should return 10 when the value is ၁ဝ", function() {
-    var ret = myanmarNumbers("၁ဝ");
-    assert.equal(ret, 10);
-    assert.equal((typeof ret), "number");
+  describe("to Myanmar numerals:", function() {
+    it("should return ၁ဝ when the value is 10", function() {
+      var ret = myanmarNumbers(10, "my");
+      assert.equal(ret, "၁ဝ");
+    });
   });
 
-  it("should parse all Myanmar digits", function() {
-    var ret = myanmarNumbers("၁၂၃၄၅၆၇၈၉၀");
-    assert.equal(ret, 1234567890);
-    assert.equal((typeof ret), "number");
-  });
-
-  it("should parse all Shan digits", function() {
-    var ret = myanmarNumbers("႑႒႓႔႕႖႗႘႙႐");
-    assert.equal(ret, 1234567890);
-    assert.equal((typeof ret), "number");
+  describe("to Shan numerals:", function() {
+    it("should return ၁ဝ when the value is 10", function() {
+      var ret = myanmarNumbers(10, "shan");
+      assert.equal(ret, "႑႐");
+    });
   });
 });
 
@@ -41,5 +57,10 @@ describe("Dates:", function() {
     var target = new Date("April 2, 2010");
     assert.equal(ret + "", target + "");
     assert.equal((typeof ret), "object");
+  });
+
+  it("should return '၂.၄.၂ဝ၁ဝ' when the value is 2 April 2010", function() {
+    var ret = myanmarNumbers(new Date("April 2, 2010"), "my");
+    assert.equal(ret, "၂.၄.၂ဝ၁ဝ");
   });
 });
