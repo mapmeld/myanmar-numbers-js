@@ -32,7 +32,7 @@ function myanmarNumbers(str, toLanguage) {
     var keys = Object.keys(numbers);
     if (toLanguage === "my") {
       // Myanmar
-      for (var n = 2; n < 11; n++) {
+      for (var n = 2; n <= 11; n++) {
         var re = new RegExp(numbers[keys[n]] + "", "g");
         txt = txt.replace(re, keys[n]);
       }

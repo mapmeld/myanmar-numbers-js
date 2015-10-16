@@ -29,9 +29,9 @@ describe("Numbers:", function() {
   });
 
   describe("to Myanmar numerals:", function() {
-    it("should return ၁ဝ when the value is 10", function() {
-      var ret = myanmarNumbers(10, "my");
-      assert.equal(ret, "၁ဝ");
+    it("should return ၉ဝ when the value is 90", function() {
+      var ret = myanmarNumbers(90, "my");
+      assert.equal(ret, "၉ဝ");
     });
   });
 
