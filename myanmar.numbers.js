@@ -76,6 +76,9 @@ function myanmarNumbers(str, toLanguage) {
     if ((toLanguage === "my" || toLanguage === "shan") && isNaN(1 * str)) {
       try {
         var d = new Date(str);
+        if (isNaN(d * 1)) {
+          throw 'invalid date';
+        }
         // valid date - output numbers in this order and send for conversion
         return replaceNumbers([d.getDate(), d.getMonth() + 1, d.getFullYear()].join("."));
       } catch(e) {
