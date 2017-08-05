@@ -9,12 +9,12 @@ describe("Numbers:", function() {
       assert.equal((typeof ret), "number");
     });
 
-    it("should return 10 when the value is ၁ဝ", function() {
+    it("should return 10 when the value is ၁ဝ (using wa letter as zero)", function() {
       var ret = myanmarNumbers("၁ဝ");
       assert.equal(ret, 10);
       assert.equal((typeof ret), "number");
     });
-
+    
     it("should parse all Myanmar digits", function() {
       var ret = myanmarNumbers("၁၂၃၄၅၆၇၈၉၀");
       assert.equal(ret, 1234567890);
@@ -29,9 +29,9 @@ describe("Numbers:", function() {
   });
 
   describe("to Myanmar numerals:", function() {
-    it("should return ၉ဝ when the value is 90", function() {
+    it("should return ၉၀ when the value is 90", function() {
       var ret = myanmarNumbers(90, "my");
-      assert.equal(ret, "၉ဝ");
+      assert.equal(ret, "၉၀");
     });
   });
 
@@ -44,10 +44,34 @@ describe("Numbers:", function() {
 });
 
 describe("Strings:", function() {
-  it("should return '10 Sesame' when the value is ၁၀ Sesame", function() {
-    var ret = myanmarNumbers("၁၀ Sesame");
-    assert.equal(ret, "10 Sesame");
-    assert.equal((typeof ret), "string");
+  it("should return '202 Sesame' when the value is '၂၀၂ Sesame'", function() {
+    var ret = myanmarNumbers("၂၀၂ Sesame");
+    assert.equal(ret, "202 Sesame");
+  });
+
+  it("should return '202 Sesame' when the value is '၂ဝ၂ Sesame' (using wa letter)", function() {
+    var ret = myanmarNumbers("၂ဝ၂ Sesame");
+    assert.equal(ret, "202 Sesame");
+  });
+
+  it("should return '330 Sesame' when the value is '၃၃ဝ Sesame' (using wa letter)", function() {
+    var ret = myanmarNumbers("၃၃ဝ Sesame");
+    assert.equal(ret, "330 Sesame");
+  });
+
+  it("should return '03 Sesame' when the value is 'ဝ၃ Sesame' (using wa letter)", function() {
+    var ret = myanmarNumbers("ဝ၃ Sesame");
+    assert.equal(ret, "03 Sesame");
+  });
+
+  it("should return '007 Sesame' when the value is 'ဝဝ၇ Sesame' (using wa letter)", function() {
+    var ret = myanmarNumbers("ဝဝ၇ Sesame");
+    assert.equal(ret, "007 Sesame");
+  });
+
+  it("should return 'tဝ' when the value is 'tဝ' (wa is not zero)", function() {
+    var ret = myanmarNumbers("tဝ");
+    assert.equal(ret, "tဝ");
   });
 });
 
@@ -59,8 +83,8 @@ describe("Dates:", function() {
     assert.equal((typeof ret), "object");
   });
 
-  it("should return '၂.၄.၂ဝ၁ဝ' when the value is 2 April 2010", function() {
+  it("should return '၂.၄.၂၀၁၀' when the value is 2 April 2010", function() {
     var ret = myanmarNumbers(new Date("April 2, 2010"), "my");
-    assert.equal(ret, "၂.၄.၂ဝ၁ဝ");
+    assert.equal(ret, "၂.၄.၂၀၁၀");
   });
 });

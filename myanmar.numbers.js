@@ -5,9 +5,9 @@ function myanmarNumbers(str, toLanguage) {
   var replaceNumbers = function(txt) {
     var numbers = {
       // Myanmar and Shan numbers
-      "๐": 0,
+      "๐": 0, // Thai zero
+      "ဝ": 0, // Myanmar letter "wa" sometimes used as zero
       "၀": 0,
-      "ဝ": 0,
       "၁": 1,
       "၂": 2,
       "၃": 3,
@@ -46,8 +46,19 @@ function myanmarNumbers(str, toLanguage) {
     } else {
       for (var n = 0; n < keys.length; n++) {
         // default
-        var re = new RegExp(keys[n], "g");
-        txt = txt.replace(re, numbers[keys[n]]);
+        if (n === 1) {
+          txt = txt.replace(/([၁၂၃၄၅၆၇၈၉])ဝ/g, '$10');
+          txt = txt.replace(/ဝ([၁၂၃၄၅၆၇၈၉])/g, '0$1');
+          while (txt.match(/ဝ(\d)/)) {
+            txt = txt.replace(/ဝ(\d)/g, '0$1');
+          }
+          while (txt.match(/(\d)ဝ/)) {
+            txt = txt.replace(/(\d)ဝ/g, '$10');
+          }
+        } else {
+          var re = new RegExp(keys[n], "g");
+          txt = txt.replace(re, numbers[keys[n]]);
+        }
       }
     }
     return txt;
