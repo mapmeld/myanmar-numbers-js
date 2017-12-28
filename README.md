@@ -1,5 +1,7 @@
 # myanmar.numbers.js
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/mapmeld/myanmar-numbers-js.svg)](https://greenkeeper.io/)
+
 Simple JavaScript library to convert between Myanmar/Burmese, Shan,
 and Arabic numerals (0-9).
 
