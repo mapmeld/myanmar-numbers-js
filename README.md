@@ -11,7 +11,7 @@ You may need to install fonts to see Myanmar and Shan numbers.
 
 **Alternative to convert into Myanmar numerals: <a href="https://github.com/fraserxu/myanmar-numeral">myanmar-numeral</a> package from Fraser Xu.**
 
-**Package to convert dates to traditional / Myanmar Civil Calendar coming soon.**
+**Package to convert dates to traditional / Myanmar Civil Calendar: ** https://github.com/mapmeld/mcal (has some errors re: leap years)
 
 ## Usage
 
