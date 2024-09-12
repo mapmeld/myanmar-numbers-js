@@ -1,7 +1,7 @@
 {
   "name": "myanmar-numbers",
-  "version": "2.1.3",
-  "description": "Convert between Myanmar, Shan, and Arabic numerals, Numbers, and Dates",
+  "version": "2.2.3",
+  "description": "Convert between Myanmar, Shan, Pa’O, Eastern Pwo, and Arabic numerals, Numbers, and Dates",
   "main": "myanmar.numbers.js",
   "repository": {
     "type": "git",
@@ -13,18 +13,16 @@
     "numerals",
     "i18n"
   ],
-  "author": "Nick Doiron <nicholas.doiron@asiafoundation.org>",
+  "author": "Nick Doiron <ndoiron@mapmeld.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mapmeld/myanmar-numbers-js/issues"
   },
   "homepage": "https://github.com/mapmeld/myanmar-numbers-js#readme",
-  "dependencies": {
-  },
-  "devDependencies": {
-    "mocha": "~7.2.0"
-  },
   "scripts": {
     "test": "mocha"
+  },
+  "devDependencies": {
+    "mocha": "^10.7.3"
   }
 }
